@@ -7,8 +7,7 @@ defmodule PlugGateway.Application do
 
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: PlugGateway.Worker.start_link(arg)
-      # {PlugGateway.Worker, arg}
+      {Plug.Cowboy, scheme: :http, plug: PlugGateway.Router, options: [port: port()]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -16,4 +15,6 @@ defmodule PlugGateway.Application do
     opts = [strategy: :one_for_one, name: PlugGateway.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  defp port, do: (System.get_env("PORT") || "4000") |> String.to_integer
 end
