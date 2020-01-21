@@ -26,7 +26,7 @@ defmodule PlugGateway.Router do
       BackendClient.get(backend_api_endpoint() <> "/users")
       |> case do
         {:ok, status_code, body} -> send_resp(conn, status_code, body)
-        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{reason}"}|)
+        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect reason}"}|)
       end
   end
 
@@ -35,7 +35,7 @@ defmodule PlugGateway.Router do
       BackendClient.get(backend_api_endpoint() <> "/users_n_plus_1")
       |> case do
         {:ok, status_code, body} -> send_resp(conn, status_code, body)
-        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{reason}"}|)
+        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect reason}"}|)
       end
   end
 

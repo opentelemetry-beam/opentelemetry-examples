@@ -1,6 +1,32 @@
 defmodule PhoenixBackendWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenix_backend
 
+  alias Vapor.Provider.{Dotenv, Env}
+
+  def init(_, config) do
+    providers = [
+      %Dotenv{},
+      %Env{bindings: [
+        port: "PORT",
+        secret: "PHOENIX_SECRET"
+      ]},
+    ]
+
+    translations = [
+      port: fn s -> String.to_integer(s) end,
+    ]
+
+    runtime_config = Vapor.load!(providers, translations)
+
+    config =
+      config
+      |> Keyword.put(:http, [:inet6, port: runtime_config.port])
+      |> Keyword.put(:url, [host: "backend", port: runtime_config.port])
+      |> Keyword.put(:secret_key_base, runtime_config.secret)
+
+    {:ok, config}
+  end
+
   socket "/socket", PhoenixBackendWeb.UserSocket,
     websocket: true,
     longpoll: false
