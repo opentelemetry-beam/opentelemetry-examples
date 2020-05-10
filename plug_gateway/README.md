@@ -1,21 +1,9 @@
 # PlugGateway
 
-**TODO: Add description**
+A minimally-furnished `Plug` based API gateway so you can see the machinery.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `plug_gateway` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:plug_gateway, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/plug_gateway](https://hexdocs.pm/plug_gateway).
-
+* `mix deps.get` to get your dependencies
+* `mix deps.compile` to compile them
+* `mix compile` to compile your code
+* `mix test` to run unit tests
+* `mix help` to find out what else you can do with `mix`

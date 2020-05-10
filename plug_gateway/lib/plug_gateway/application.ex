@@ -1,20 +1,24 @@
 defmodule PlugGateway.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
+  @moduledoc """
+  PlugGateway application.
+
+  Should you copy from _this_ code? You'll need to call `OpentelemetryPlug.setup/2`, at least.
+  """
 
   use Application
+  use Norm
 
+  @impl true
   def start(_type, _args) do
+    :ok = OpentelemetryPlug.setup([:plug_gateway], [])
+
+    port = PlugGateway.Config.config().port
+
     children = [
-      {Plug.Cowboy, scheme: :http, plug: PlugGateway.Router, options: [port: port()]}
+      {Plug.Cowboy, scheme: :http, plug: PlugGateway.Router, options: [port: port]}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PlugGateway.Supervisor]
     Supervisor.start_link(children, opts)
   end
-
-  defp port, do: (System.get_env("PORT") || "4000") |> String.to_integer
 end

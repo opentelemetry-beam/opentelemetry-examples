@@ -24,7 +24,16 @@ defmodule PlugGateway.MixProject do
     [
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.1"},
-      {:plug_cowboy, "~> 2.1"}
+      {:mox, "~> 0.5.2", only: :test},
+      {:norm, "~> 0.9"},
+      {:opentelemetry_api, "~> 0.3.1"},
+      {:opentelemetry_plug,
+       git: "https://github.com/opentelemetry-beam/opentelemetry_plug.git", tag: "update-name"},
+      {:opentelemetry, "~> 0.4.0"},
+      {:plug_cowboy, "~> 2.1"},
+      {:plug,
+       git: "https://github.com/tsloughter/plug.git", tag: "dispatch-telemetry", override: true},
+      {:vapor, "~> 0.5"}
     ]
   end
 end

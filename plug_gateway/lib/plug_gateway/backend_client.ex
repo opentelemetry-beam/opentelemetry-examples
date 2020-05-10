@@ -1,15 +1,31 @@
 defmodule PlugGateway.BackendClient do
+  @moduledoc """
+  PlugGateway back end client.
 
-  def get(url, opts \\ []) do
-    headers = [{"authorization", "Bearer #{token()}"}]
+  Should you copy from _this_ code?
 
-    url
-    |> HTTPoison.get(headers)
-    |> case do
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} -> {:ok, status_code, body}
-      {:error, reason} -> {:error, reason}
-    end
+  This module injects trace propagation headers so the next service can create new spans in the
+  same trace. That's definitely worth doing. If you can't delegate that to your HTTP client
+  package _eg._ `Tesla` with its `Plug`-like extension system, you need to do it yourself.
+
+  This module also applies configuration from `PlugGateway.Config` before passing control to
+  `PlugGateway.HTTP`. Merging its rssponsibilities into the latter would make it harder to mock
+  and re-implement. You could move `get/1` to `PlugGateway.Router` until there was another caller,
+  though.
+  """
+
+  defdelegate config, to: PlugGateway.Config
+  defdelegate get(url, headers), to: PlugGateway.HTTP
+
+  def get(path) do
+    %{backend_api_endpoint: u, backend_auth_token: t} = config()
+    url = u <> path
+
+    headers =
+      :ot_propagation.http_inject([
+        {"authorization", "Bearer #{t}"}
+      ])
+
+    get(url, headers)
   end
-
-  defp token, do: System.get_env("BACKEND_AUTH_TOKEN") || raise "Must define the BACKEND_AUTH_TOKEN environment variable"
 end
