@@ -3,7 +3,7 @@ defmodule PlugGateway.Config do
   PlugGateway configuration.
   """
 
-  defstruct [:api_endpoint, :auth_token, :port]
+  defstruct [:api_endpoint, :auth_token, http_module: PlugGateway.HTTP.API.Poisonous, port: 4000]
 
   @doc "Get our configuration."
   def get do
