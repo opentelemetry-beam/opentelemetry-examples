@@ -1,7 +1,8 @@
 defmodule PlugGateway.BackendClient do
 
   def get(url, opts \\ []) do
-    headers = [{"authorization", "Bearer #{token()}"}]
+    auth_token = PlugGateway.Config.get().auth_token
+    headers = [{"authorization", "Bearer #{auth_token}"}]
 
     url
     |> HTTPoison.get(headers)
@@ -10,6 +11,4 @@ defmodule PlugGateway.BackendClient do
       {:error, reason} -> {:error, reason}
     end
   end
-
-  defp token, do: System.get_env("BACKEND_AUTH_TOKEN") || raise "Must define the BACKEND_AUTH_TOKEN environment variable"
 end

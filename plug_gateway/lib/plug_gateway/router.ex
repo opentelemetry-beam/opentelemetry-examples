@@ -43,5 +43,5 @@ defmodule PlugGateway.Router do
     send_resp(conn, 404, "Not Found")
   end
 
-  defp backend_api_endpoint, do: System.get_env("BACKEND_API_URL") || raise "Must define the BACKEND_API_URL environment variable"
+  defp backend_api_endpoint, do: PlugGateway.Config.get().api_endpoint
 end
