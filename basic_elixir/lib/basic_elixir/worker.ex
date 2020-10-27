@@ -1,10 +1,14 @@
 defmodule BasicElixir.Worker do
   use GenServer
   require Logger
+  require OpenTelemetry.Tracer
+  require OpenTelemetry.Span
 
   # Client
   def start_link(default) when is_list(default) do
-    GenServer.start_link(__MODULE__, default)
+    OpenTelemetry.Tracer.with_span "start_link" do
+      GenServer.start_link(__MODULE__, default)
+    end
   end
 
   def push(pid, element) do
@@ -18,8 +22,10 @@ defmodule BasicElixir.Worker do
   # Server (callbacks)
   @impl true
   def init(stack) do
-    Logger.info("Starting #{__MODULE__}...")
-    {:ok, stack}
+    OpenTelemetry.Tracer.with_span "init" do
+      Logger.info("Starting #{__MODULE__}...")
+      {:ok, stack}
+    end
   end
 
   @impl true
