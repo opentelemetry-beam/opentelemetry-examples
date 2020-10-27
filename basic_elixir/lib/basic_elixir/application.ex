@@ -8,7 +8,7 @@ defmodule BasicElixir.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: BasicElixir.Worker.start_link(arg)
-      # {BasicElixir.Worker, arg}
+      {BasicElixir.Worker, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
