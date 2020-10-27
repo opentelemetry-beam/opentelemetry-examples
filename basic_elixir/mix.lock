@@ -1,0 +1,11 @@
+%{
+  "acceptor_pool": {:hex, :acceptor_pool, "1.0.0", "43c20d2acae35f0c2bcd64f9d2bde267e459f0f3fd23dab26485bf518c281b21", [:rebar3], [], "hexpm"},
+  "chatterbox": {:hex, :ts_chatterbox, "0.9.1", "843557ee729b04b3c1bdac33fb162daefdbf4f7ae0af0bdc055fb16e91e057e3", [:rebar3], [{:hpack, "~>0.2.3", [hex: :hpack_erl, repo: "hexpm", optional: false]}], "hexpm"},
+  "ctx": {:hex, :ctx, "0.5.0", "78e0f16712e12d707a7f34277381b8e193d7c71eaa24d37330dc02477c09eda5", [:rebar3], [], "hexpm"},
+  "gproc": {:hex, :gproc, "0.8.0", "cea02c578589c61e5341fce149ea36ccef236cc2ecac8691fba408e7ea77ec2f", [:rebar3], [], "hexpm"},
+  "grpcbox": {:hex, :grpcbox, "0.11.0", "ea9f9160120a4884838d397dde64b36edb122adf335238f639debc12087da67f", [:rebar3], [{:acceptor_pool, "~>1.0.0", [hex: :acceptor_pool, repo: "hexpm", optional: false]}, {:chatterbox, "~>0.9.1", [hex: :ts_chatterbox, repo: "hexpm", optional: false]}, {:ctx, "~>0.5.0", [hex: :ctx, repo: "hexpm", optional: false]}, {:gproc, "~>0.8.0", [hex: :gproc, repo: "hexpm", optional: false]}], "hexpm"},
+  "hpack": {:hex, :hpack_erl, "0.2.3", "17670f83ff984ae6cd74b1c456edde906d27ff013740ee4d9efaa4f1bf999633", [:rebar3], [], "hexpm"},
+  "opentelemetry": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry"]},
+  "opentelemetry_api": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry_api"]},
+  "opentelemetry_exporter": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry_exporter"]},
+}
