@@ -1,21 +1,21 @@
-# BasicElixir
+# Basic Elixir Example
 
-**TODO: Add description**
+This is a sample repository that demo how to setup a basic Elixir application
+with `opentelemetry-api` and `opentelemetry_exporter`. Here, we are using
+`opentelemetry_exporter` to export the traces to [OpenTelemetry Collector][0].
+The collector in turn export the traces to [Zipkin][1] and [Jaeger][2]
+respectively.
 
-## Installation
+## Getting Stated
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `basic_elixir` to your list of dependencies in `mix.exs`:
+Assuming you already have Docker and Docker Compose installed:
 
-```elixir
-def deps do
-  [
-    {:basic_elixir, "~> 0.1.0"}
-  ]
-end
-```
+1. Run `docker-compose up` to start the application, OpenTelemetry Collector,
+   Zipkin and Jaegar.
+2. Visit Zipkin at http://localhost:9411 and hit `Run Query` to look the the sample trace.
+3. Visit Jaeger UI at http://localhost:16686 and click `Find Trace` to look at the sample
+   trace.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/basic_elixir](https://hexdocs.pm/basic_elixir).
-
+[0]: https://github.com/open-telemetry/opentelemetry-collector/
+[1]: https://zipkin.io/
+[2]: https://www.jaegertracing.io/
