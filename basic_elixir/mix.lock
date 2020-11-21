@@ -5,7 +5,7 @@
   "gproc": {:hex, :gproc, "0.8.0", "cea02c578589c61e5341fce149ea36ccef236cc2ecac8691fba408e7ea77ec2f", [:rebar3], [], "hexpm"},
   "grpcbox": {:hex, :grpcbox, "0.11.0", "ea9f9160120a4884838d397dde64b36edb122adf335238f639debc12087da67f", [:rebar3], [{:acceptor_pool, "~>1.0.0", [hex: :acceptor_pool, repo: "hexpm", optional: false]}, {:chatterbox, "~>0.9.1", [hex: :ts_chatterbox, repo: "hexpm", optional: false]}, {:ctx, "~>0.5.0", [hex: :ctx, repo: "hexpm", optional: false]}, {:gproc, "~>0.8.0", [hex: :gproc, repo: "hexpm", optional: false]}], "hexpm"},
   "hpack": {:hex, :hpack_erl, "0.2.3", "17670f83ff984ae6cd74b1c456edde906d27ff013740ee4d9efaa4f1bf999633", [:rebar3], [], "hexpm"},
-  "opentelemetry": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry"]},
-  "opentelemetry_api": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry_api"]},
-  "opentelemetry_exporter": {:git, "https://github.com/open-telemetry/opentelemetry-erlang.git", "3d12c5180768b24830dff69af1fd0abd5307384b", [sparse: "apps/opentelemetry_exporter"]},
+  "opentelemetry": {:hex, :opentelemetry, "0.5.0", "6a7072a6f54b8be07a42dd2aaca1ee0389038681405d0a27c4c5e5325b6c1a82", [:rebar3], [{:opentelemetry_api, "~>0.5.0", [hex: :opentelemetry_api, repo: "hexpm", optional: false]}], "hexpm"},
+  "opentelemetry_api": {:hex, :opentelemetry_api, "0.5.0", "29ecaa7bb86df4dbd44b14fd71fd4faadff5c08d178545b66b3861bd350be28a", [:mix, :rebar3], [], "hexpm"},
+  "opentelemetry_exporter": {:hex, :opentelemetry_exporter, "0.5.0", "71c32f865123aeb7f72e15a1a8dddbbf868f07a5d65795d8f5d909b36fddc7be", [:rebar3], [{:grpcbox, "~>0.11.0", [hex: :grpcbox, repo: "hexpm", optional: false]}, {:opentelemetry, "~>0.5.0", [hex: :opentelemetry, repo: "hexpm", optional: false]}, {:opentelemetry_api, "~>0.5.0", [hex: :opentelemetry_api, repo: "hexpm", optional: false]}], "hexpm"},
 }

@@ -27,15 +27,8 @@ defmodule BasicElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:opentelemetry_api,
-       github: "open-telemetry/opentelemetry-erlang", sparse: "apps/opentelemetry_api"},
-      {:opentelemetry,
-       github: "open-telemetry/opentelemetry-erlang", sparse: "apps/opentelemetry"},
-      {:opentelemetry_exporter,
-       github: "open-telemetry/opentelemetry-erlang", sparse: "apps/opentelemetry_exporter"}
-
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:opentelemetry, "~> 0.5.0"},
+      {:opentelemetry_exporter, "~> 0.5.0"},
     ]
   end
 end
