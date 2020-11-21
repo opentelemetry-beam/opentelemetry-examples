@@ -7,6 +7,8 @@ defmodule BasicElixir.Worker do
   # Client
   def start_link(default) when is_list(default) do
     OpenTelemetry.Tracer.with_span "start_link" do
+      span_ctx = OpenTelemetry.Tracer.current_span_ctx
+      OpenTelemetry.Span.set_attribute(span_ctx, "hello", "world")
       GenServer.start_link(__MODULE__, default)
     end
   end
