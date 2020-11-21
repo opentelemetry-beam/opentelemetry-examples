@@ -1,6 +1,4 @@
 FROM elixir:1.9-alpine as builder
-# Add git as deps to fetch dependencies through git directly
-RUN apk add git
 RUN mix local.hex --force && mix local.rebar --force
 WORKDIR /app
 COPY . /app
