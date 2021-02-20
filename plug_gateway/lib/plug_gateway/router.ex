@@ -3,11 +3,15 @@ defmodule PlugGateway.Router do
 
   alias PlugGateway.BackendClient
 
-  plug :match
-  plug Plug.Parsers, parsers: [:urlencoded, :json],
+  plug(:match)
+
+  plug(Plug.Parsers,
+    parsers: [:urlencoded, :json],
     pass: ["*/*"],
     json_decoder: Jason
-  plug :dispatch
+  )
+
+  plug(:dispatch)
 
   get "/" do
     send_resp(conn, 200, "Hello World")
@@ -22,26 +26,20 @@ defmodule PlugGateway.Router do
   end
 
   get "/users" do
-    response =
-      BackendClient.get(backend_api_endpoint() <> "/users")
-      |> case do
-        {:ok, status_code, body} -> send_resp(conn, status_code, body)
-        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect reason}"}|)
-      end
+    case BackendClient.get("/users") do
+      {:ok, status_code, body} -> send_resp(conn, status_code, body)
+      {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect(reason)}"}|)
+    end
   end
 
   get "/users_n_plus_1" do
-    response =
-      BackendClient.get(backend_api_endpoint() <> "/users_n_plus_1")
-      |> case do
-        {:ok, status_code, body} -> send_resp(conn, status_code, body)
-        {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect reason}"}|)
-      end
+    case BackendClient.get("/users_n_plus_1") do
+      {:ok, status_code, body} -> send_resp(conn, status_code, body)
+      {:error, reason} -> send_resp(conn, 502, ~s|{"errors":"#{inspect(reason)}"}|)
+    end
   end
 
   match _ do
     send_resp(conn, 404, "Not Found")
   end
-
-  defp backend_api_endpoint, do: System.get_env("BACKEND_API_URL") || raise "Must define the BACKEND_API_URL environment variable"
 end

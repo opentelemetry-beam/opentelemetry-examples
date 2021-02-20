@@ -24,6 +24,7 @@ defmodule PlugGateway.MixProject do
     [
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.1"},
+      {:mox, "~> 0.5.2", only: :test},
       {:plug_cowboy, "~> 2.1"}
     ]
   end

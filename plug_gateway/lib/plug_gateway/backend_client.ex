@@ -1,15 +1,12 @@
 defmodule PlugGateway.BackendClient do
+  @moduledoc """
+  PlugGateway back end client.
+  """
 
-  def get(url, opts \\ []) do
-    headers = [{"authorization", "Bearer #{token()}"}]
-
-    url
-    |> HTTPoison.get(headers)
-    |> case do
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} -> {:ok, status_code, body}
-      {:error, reason} -> {:error, reason}
-    end
+  def get(path) do
+    config = PlugGateway.Config.get()
+    url = config.api_endpoint <> path
+    headers = [{"authorization", "Bearer #{config.auth_token}"}]
+    config.http_module.get(url, headers)
   end
-
-  defp token, do: System.get_env("BACKEND_AUTH_TOKEN") || raise "Must define the BACKEND_AUTH_TOKEN environment variable"
 end
