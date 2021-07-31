@@ -1,0 +1,8 @@
+# Build artifacts
+_build
+deps
+
+# Assets
+**/node_modules
+priv/static
+
