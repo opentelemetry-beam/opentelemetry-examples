@@ -6,6 +6,10 @@ defmodule Demo.Application do
   use Application
 
   def start(_type, _args) do
+    OpenTelemetry.register_application_tracer(:demo)
+    OpentelemetryPhoenix.setup()
+    OpentelemetryEcto.setup([:demo, :repo])
+
     children = [
       # Start the Ecto repository
       Demo.Repo,
