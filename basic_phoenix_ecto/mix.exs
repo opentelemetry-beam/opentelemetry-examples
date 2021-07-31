@@ -44,7 +44,11 @@ defmodule Demo.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+
+      {:opentelemetry_phoenix, "~> 1.0.0-rc.2"},
+      {:opentelemetry_ecto, "~> 1.0.0-rc.1"},
+      {:opentelemetry_exporter, "~> 1.0.0-rc.1"}
     ]
   end
 
