@@ -22,3 +22,22 @@ config :opentelemetry, :processors,
     # hostname such as `localhost`, `0.0.0.0` and etc.
     exporter: {:opentelemetry_exporter, %{endpoints: [{:http, 'otel', 55681, []}]}}
   }
+
+# Uncomment below if you want to send your traces directly
+# to Honeycomb.
+#
+# config :opentelemetry, :processors,
+#   otel_batch_processor: %{
+#     exporter: {:opentelemetry_exporter, %{
+#       endpoints: [
+#         {:https, 'api.honeycomb.io', 443 , [
+#         ]}
+#       ],
+#       headers: [
+#         # For more secure approach, consider using environment variable:
+#         #   {"x-honeycomb-team", System.fetch_env!("HONEYCOMB_API_KEY")}
+#         {"x-honeycomb-team","<YOUR_API_KEY""},
+#         {"x-honeycomb-dataset", "<YOUR_DATASET_NAME>"}
+#       ]
+#     }}
+#   }
